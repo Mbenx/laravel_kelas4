@@ -17,7 +17,9 @@
 
 @section('content')
 <div class="row">
+
     <div class="col-md-6">
+        <a href="/employee/create" type="button" class="btn btn-block btn-primary btn-lg">Add Data Employee</a>
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">Data Employee</h3>
@@ -34,7 +36,7 @@
                         <th>Action</th>
                     </tr>
                     @foreach ($data as $d)
-                    
+
                     <tr>
                         <td>{{$d->id}}</td>
                         <td>{{$d->name}}</td>
@@ -42,13 +44,13 @@
                         <td>{{$d->email}}</td>
                         <td>{{$d->phone}}</td>
                         <td>
-                        <a href="/employee/edit/{{$d->id}}">EDIT </a> | 
-                        <a href="/employee/delete/{{$d->id}}">DELETE </a>
+                            <a href="/employee/edit/{{$d->id}}">EDIT </a> |
+                            <a href="/employee/delete/{{$d->id}}">DELETE </a>
                         </td>
                     </tr>
-                        
+
                     @endforeach
-                    
+
                 </table>
             </div>
             <!-- /.box-body -->

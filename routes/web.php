@@ -29,6 +29,11 @@ Route::get('/department', 'DepartmentController@index');
 Route::get('/position', 'PositionController@index');
 
 Route::get('/employee', 'EmployeeController@index');
+
+Route::get('/employee/create', 'EmployeeController@create');
+Route::post('/employee/store', 'EmployeeController@store');
+
 Route::get('/employee/edit/{id}', 'EmployeeController@edit');
 Route::put('/employee/update', 'EmployeeController@update');
+
 Route::get('/employee/delete/{id}', 'EmployeeController@destroy');

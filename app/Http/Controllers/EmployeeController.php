@@ -26,7 +26,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('employee/create');
     }
 
     /**
@@ -37,7 +37,14 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('karyawan')->insert(
+            [
+            'name' => $request->name, 
+            'address' => $request->address,
+            'email' => $request->email,
+            'phone' => $request->phone]
+        );
+        return redirect('/employee');
     }
 
     /**
@@ -95,6 +102,7 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('karyawan')->where('id', '=', $id)->delete();
+        return redirect('/employee');
     }
 }

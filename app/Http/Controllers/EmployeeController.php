@@ -55,7 +55,10 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        $karyawan = DB::table('karyawan')
+        ->where('id','=',$id)
+        ->get();
+        return view('/employee/show',['data'=>$karyawan]);
     }
 
     /**

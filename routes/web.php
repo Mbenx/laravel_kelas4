@@ -26,9 +26,29 @@
 Route::get('/', 'HomeController@index');
 
 Route::get('/department', 'DepartmentController@index');
+Route::get('/department/{id}', 'DepartmentController@show');
+
+Route::get('/department/create', 'DepartmentController@create');
+Route::post('/department/store', 'DepartmentController@store');
+
+Route::get('/department/edit/{id}', 'DepartmentController@edit');
+Route::put('/department/update', 'DepartmentController@update');
+
+Route::get('/department/delete/{id}', 'DepartmentController@destroy');
+
 Route::get('/position', 'PositionController@index');
+Route::get('/position/{id}', 'PositionController@show');
+
+Route::get('/position/create', 'PositionController@create');
+Route::post('/position/store', 'PositionController@store');
+
+Route::get('/position/edit/{id}', 'PositionController@edit');
+Route::put('/position/update', 'PositionController@update');
+
+Route::get('/position/delete/{id}', 'PositionController@destroy');
 
 Route::get('/employee', 'EmployeeController@index');
+Route::get('/employee/{id}', 'EmployeeController@show');
 
 Route::get('/employee/create', 'EmployeeController@create');
 Route::post('/employee/store', 'EmployeeController@store');

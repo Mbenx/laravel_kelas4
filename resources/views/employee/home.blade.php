@@ -39,7 +39,10 @@
 
                     <tr>
                         <td>{{$d->id}}</td>
-                        <td>{{$d->name}}</td>
+                        <td><a href="/employee/{{$d->id}}">
+                                {{$d->name}}
+                            </a>
+                        </td>
                         <td>{{$d->address}}</td>
                         <td>{{$d->email}}</td>
                         <td>{{$d->phone}}</td>

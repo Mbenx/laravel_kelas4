@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Position;
 
 class PositionController extends Controller
 {
@@ -13,7 +14,8 @@ class PositionController extends Controller
      */
     public function index()
     {
-        return view('position/home');
+        $data = Position::all();
+        return view('position/home',['data'=>$data]);
     }
 
     /**
@@ -23,7 +25,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        //
+        return view('position/create');
     }
 
     /**
@@ -34,7 +36,12 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Position::create([
+            'name' => $request->name,
+            'department_id' => $request->department_id
+            ]);
+
+        return redirect('/position');
     }
 
     /**
@@ -45,7 +52,8 @@ class PositionController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Position::where('id','=',$id)->first();
+        return view('position/show',['data'=>$data]);
     }
 
     /**
@@ -56,7 +64,8 @@ class PositionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Position::where('id','=',$id)->first();
+        return view('position/edit',['data'=>$data]);
     }
 
     /**
@@ -66,9 +75,15 @@ class PositionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        Position::where('id','=',$request->id)
+          ->update([
+              'name' => $request->name,
+              'department_id' => $request->department_id
+              ]);
+
+        return redirect('/position');
     }
 
     /**

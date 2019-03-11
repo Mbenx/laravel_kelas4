@@ -25,7 +25,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('department/create');
     }
 
     /**
@@ -36,7 +36,11 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Department::create([
+            'name' => $request->name
+            ]);
+
+        return redirect('/department');
     }
 
     /**
@@ -47,7 +51,8 @@ class DepartmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Department::where('id','=',$id)->first();
+        return view('department/show',['data'=>$data]);
     }
 
     /**
@@ -69,9 +74,15 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //dd($request);
+        Department::where('id','=',$request->id)
+          ->update([
+              'name' => $request->name
+              ]);
+
+        return redirect('/department');
     }
 
     /**
@@ -82,6 +93,7 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Department::where('id','=',$id)->delete();
+        return redirect('/department');
     }
 }

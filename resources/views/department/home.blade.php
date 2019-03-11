@@ -35,7 +35,7 @@
 
                     <tr>
                         <td>{{$d->id}}</td>
-                        <td><a href="/department/{{$d->id}}">
+                        <td><a href="/department/show/{{$d->id}}">
                                 {{$d->name}}
                             </a>
                         </td>

@@ -4,13 +4,13 @@
 <section class="content-header">
     <h1>
         Dashboard
-        <small>Position</small>
+        <small>Inventory</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard">
                 </i> Home</a>
         </li>
-        <li class="active">Position</li>
+        <li class="active">Inventory</li>
     </ol>
 </section>
 @endsection
@@ -19,10 +19,10 @@
 
 <div class="row">
     <div class="col-md-6">
-        <a href="/position/create" type="button" class="btn btn-block btn-primary btn-lg">Add Data Position</a>
+        <a href="/inventory/create" type="button" class="btn btn-block btn-primary btn-lg">Add Data Inventory</a>
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Data Position</h3>
+                <h3 class="box-title">Data Inventory</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
@@ -30,21 +30,20 @@
                     <tr>
                         <th style="width: 10px">#</th>
                         <th>Name</th>
-                        <th>Department</th>
-                        <th>Action</th>
+                        <th>Archive Name</th>
                     </tr>
                     @foreach ($data as $d)
 
                     <tr>
                         <td>{{$d->id}}</td>
-                        <td><a href="/position/show/{{$d->id}}">
+                        <td><a href="/inventory/show/{{$d->id}}">
                                 {{$d->name}}
                             </a>
                         </td>
-                        <td>{{$d->department->name}}</td>
+                        <td>{{$d->archive->name}}</td>
                         <td>
-                            <a href="/position/edit/{{$d->id}}">EDIT </a> |
-                            <a href="/position/delete/{{$d->id}}">DELETE </a>
+                            <a href="/inventory/edit/{{$d->id}}">EDIT </a> |
+                            <a href="/inventory/delete/{{$d->id}}">DELETE </a>
                         </td>
                     </tr>
 

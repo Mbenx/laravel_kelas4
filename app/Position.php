@@ -18,4 +18,9 @@ class Position extends Model
      
     // created_at & updated_at tidak terpakai 
     //public $timestamps = false;
+
+    public function department()
+    {
+        return $this->belongsTo('App\Department');
+    }
 }

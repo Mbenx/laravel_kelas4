@@ -57,3 +57,26 @@ Route::get('/employee/edit/{id}', 'EmployeeController@edit');
 Route::put('/employee/update', 'EmployeeController@update');
 
 Route::get('/employee/delete/{id}', 'EmployeeController@destroy');
+
+Route::get('/inventory', 'InventoryController@index');
+Route::get('/inventory/show/{id}', 'InventoryController@show');
+
+Route::get('/inventory/create', 'InventoryController@create');
+Route::post('/inventory/store', 'InventoryController@store');
+
+Route::get('/inventory/edit/{id}', 'InventoryController@edit');
+Route::put('/inventory/update', 'InventoryController@update');
+
+Route::get('/inventory/delete/{id}', 'InventoryController@destroy');
+
+Route::get('/archive', 'ArchiveController@index');
+Route::get('/archive/show/{id}', 'ArchiveController@show');
+
+Route::get('/archive/create', 'ArchiveController@create');
+Route::post('/archive/store', 'ArchiveController@store');
+
+Route::get('/archive/edit/{id}', 'ArchiveController@edit');
+Route::put('/archive/update', 'ArchiveController@update');
+
+Route::get('/archive/delete/{id}', 'ArchiveController@destroy');
+

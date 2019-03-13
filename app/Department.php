@@ -18,4 +18,9 @@ class Department extends Model
      
     // created_at & updated_at tidak terpakai 
     //public $timestamps = false;
+
+    public function position()
+    {
+        return $this->hasMany('App\Position');
+    }
 }

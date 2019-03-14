@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Position;
+use App\Department;
 
 class PositionController extends Controller
 {
@@ -25,7 +26,8 @@ class PositionController extends Controller
      */
     public function create()
     {
-        return view('position/create');
+        $department = Department::all();
+        return view('position/create',['data'=>$department]);
     }
 
     /**
@@ -64,8 +66,9 @@ class PositionController extends Controller
      */
     public function edit($id)
     {
+        $department = Department::all();
         $data = Position::where('id','=',$id)->first();
-        return view('position/edit',['data'=>$data]);
+        return view('position/edit',['data'=>$data,'dept'=>$department]);
     }
 
     /**

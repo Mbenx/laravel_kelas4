@@ -38,9 +38,10 @@
                     <div class="form-group">
                         <label>Department</label>
                         <select class="form-control select2" name="department_id" style="width: 100%;">
-                          <option selected="selected" value="3">Alabama</option>
-                            <option value="3">Alaska</option>
-                            <option value="3">California</option>
+                            <option selected="selected">Please Select</option>
+                            @foreach ($data as $d)
+                                <option value="{{$d->id}}">{{$d->name}}</option>
+                            @endforeach                          
                         </select>
                       </div>                
                 </div>

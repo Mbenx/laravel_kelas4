@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Position extends Model
+class Employee extends Model
 {
     // whitelist
     protected $fillable = ['name','department_id']; 
@@ -19,13 +19,8 @@ class Position extends Model
     // created_at & updated_at tidak terpakai 
     //public $timestamps = false;
 
-    public function department()
+    public function position()
     {
-        return $this->belongsTo('App\Department');
-    }
-
-    public function employee()
-    {
-        return $this->hasMany('App\Employee');
+        return $this->belongsTo('App\Position');
     }
 }

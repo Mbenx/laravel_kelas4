@@ -97,6 +97,7 @@ class PositionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Position::where('id','=',$id)->delete();
+        return redirect('/position');
     }
 }

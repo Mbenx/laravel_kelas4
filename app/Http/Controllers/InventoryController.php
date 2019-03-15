@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Inventory;
+use App\Archive;
 
 class InventoryController extends Controller
 {
@@ -25,7 +26,8 @@ class InventoryController extends Controller
      */
     public function create()
     {
-        //
+        $archive = Archive::all();
+        return view('inventory/create',['data'=>$archive]);
     }
 
     /**
@@ -36,7 +38,12 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Inventory::create([
+            'name' => $request->name,
+            'archive_id' => $request->archive_id
+            ]);
+
+        return redirect('/inventory');
     }
 
     /**
@@ -47,7 +54,8 @@ class InventoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Inventory::where('id','=',$id)->first();
+        return view('inventory/show',['data'=>$data]);
     }
 
     /**
@@ -58,7 +66,9 @@ class InventoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $archive = Archive::all();
+        $data = Inventory::where('id','=',$id)->first();
+        return view('inventory/edit',['data'=>$data,'archive'=>$archive]);
     }
 
     /**
@@ -70,7 +80,13 @@ class InventoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Inventory::where('id','=',$request->id)
+          ->update([
+              'name' => $request->name,
+              'department_id' => $request->archive_id
+              ]);
+
+        return redirect('/inventory');
     }
 
     /**
@@ -81,6 +97,7 @@ class InventoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Inventory::where('id','=',$id)->delete();
+        return redirect('/inventory');
     }
 }

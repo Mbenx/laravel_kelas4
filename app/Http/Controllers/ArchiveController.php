@@ -25,7 +25,7 @@ class ArchiveController extends Controller
      */
     public function create()
     {
-        //
+        return view('archive/create');
     }
 
     /**
@@ -36,7 +36,11 @@ class ArchiveController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Archive::create([
+            'name' => $request->name
+            ]);
+
+        return redirect('/archive');
     }
 
     /**
@@ -47,7 +51,8 @@ class ArchiveController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Archive::where('id','=',$id)->first();
+        return view('archive/show',['data'=>$data]);
     }
 
     /**
@@ -58,7 +63,8 @@ class ArchiveController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Archive::where('id','=',$id)->first();
+        return view('archive/edit',['data'=>$data]);
     }
 
     /**
@@ -68,9 +74,15 @@ class ArchiveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //dd($request);
+        Archive::where('id','=',$request->id)
+          ->update([
+              'name' => $request->name
+              ]);
+
+        return redirect('/archive');
     }
 
     /**
@@ -81,6 +93,7 @@ class ArchiveController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Archive::where('id','=',$id)->delete();
+        return redirect('/archive');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\DB;
 use App\Employee;
+use App\Position;
 
 class EmployeeController extends Controller
 {
@@ -16,7 +17,10 @@ class EmployeeController extends Controller
     public function index()
     {
         // Query Builder
-        $karyawan = DB::table('karyawan')->get();
+        //$karyawan = DB::table('karyawan')->get();
+
+        // Eloquent
+        $karyawan = Employee::all();
         return view('employee/home',['data'=>$karyawan]);
     }
 
@@ -27,7 +31,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employee/create');
+        $data = Position::all();
+        return view('employee/create',['data'=>$data]);
     }
 
     /**
@@ -38,13 +43,20 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('karyawan')->insert(
-            [
+        // DB::table('karyawan')->insert(
+        //     [
+        //     'name' => $request->name, 
+        //     'address' => $request->address,
+        //     'email' => $request->email,
+        //     'phone' => $request->phone]
+        // );
+        //dd($request);
+        Employee::create([
             'name' => $request->name, 
             'address' => $request->address,
             'email' => $request->email,
-            'phone' => $request->phone]
-        );
+            'phone' => $request->phone,
+            'position_id' => $request->position_id]);
         return redirect('/employee');
     }
 
@@ -56,9 +68,11 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $karyawan = DB::table('karyawan')
-        ->where('id','=',$id)
-        ->get();
+        // $karyawan = DB::table('karyawan')
+        // ->where('id','=',$id)
+        // ->get();
+
+        $karyawan = Employee::where('id','=',$id)->first();
         return view('/employee/show',['data'=>$karyawan]);
     }
 
@@ -71,10 +85,12 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         // Query Builder
-        $karyawan = DB::table('karyawan')
-        ->where('id','=',$id)
-        ->get();
-        return view('employee/edit',['data'=>$karyawan]);
+        // $karyawan = DB::table('karyawan')
+        // ->where('id','=',$id)
+        // ->get();
+        $position = Position::all();
+        $karyawan = Employee::where('id','=',$id)->first();
+        return view('employee/edit',['data'=>$karyawan,'pos'=>$position]);
     }
 
     /**
@@ -87,14 +103,23 @@ class EmployeeController extends Controller
     public function update(Request $request)
     {
         //dd($request);
-        DB::table('karyawan')
-            ->where('id', $request->id)
-            ->update([
+        // DB::table('karyawan')
+        //     ->where('id', $request->id)
+        //     ->update([
+        //         'name' => $request->name,
+        //         'address' => $request->address,
+        //         'email' => $request->email,
+        //         'phone' => $request->phone,
+        //         ]);
+
+        Employee::where('id','=',$request->id)
+          ->update([
                 'name' => $request->name,
                 'address' => $request->address,
                 'email' => $request->email,
                 'phone' => $request->phone,
-                ]);
+                'position_id' => $request->position_id
+              ]);
         return redirect('/employee');
     }
 
@@ -106,7 +131,9 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('karyawan')->where('id', '=', $id)->delete();
+        //DB::table('karyawan')->where('id', '=', $id)->delete();
+        
+        Employee::where('id','=',$id)->delete();
         return redirect('/employee');
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Employee extends Model
 {
     // whitelist
-    protected $fillable = ['name','department_id']; 
+    protected $fillable = ['name','address','email','phone','position_id']; 
     
     // blacklist
     protected $guarded = ['id'];
@@ -22,5 +22,12 @@ class Employee extends Model
     public function position()
     {
         return $this->belongsTo('App\Position');
+    }
+
+    public function inventory()
+    {
+        return $this->belongsToMany('App\Inventory')
+        ->withPivot('description')
+        ->withTimestamps();
     }
 }

@@ -16,8 +16,16 @@ class Inventory extends Model
      use SoftDeletes;
      protected $dates = ['deleted_at'];
 
-     public function archive()
+    public function archive()
     {
         return $this->belongsTo('App\Archive');
     }
+
+    public function employee()
+    {
+        return $this->belongsToMany('App\Employee')
+        ->withPivot('description')
+        ->withTimestamps();
+    }
+
 }

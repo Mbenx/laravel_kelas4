@@ -80,3 +80,7 @@ Route::put('/archive/update', 'ArchiveController@update');
 
 Route::get('/archive/delete/{id}', 'ArchiveController@destroy');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
